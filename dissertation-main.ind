@@ -1,0 +1,92 @@
+\begin{theindex}
+
+  \item Alfv\'en Speed, 5
+  \item anisotropy, 14, 32, 46
+
+  \indexspace
+
+  \item Bulk velocity, 14
+
+  \indexspace
+
+  \item chaos hypothesis, 12
+  \item collision operator, 12
+
+  \indexspace
+
+  \item Debye length, 3
+  \item dispersion relation, 18
+  \item distribution function, 12
+    \subitem bi-Maxwellian, 15
+    \subitem Maxwellian, 15
+    \subitem PDF, 13
+    \subitem VDF, 13
+
+  \indexspace
+
+  \item Frequency
+    \subitem cyclotron, 4
+    \subitem nonlinear, 75
+    \subitem plasma, 4
+
+  \indexspace
+
+  \item Gyroradius, 4
+
+  \indexspace
+
+  \item Intermittency, 32
+  \item Ion-inertial Length, 4
+
+  \indexspace
+
+  \item Machine Learning, 89
+    \subitem Gaussian Processes, 91
+    \subitem kernels, 93
+      \subsubitem constant, 93
+      \subsubitem exponential sine squared, 94
+      \subsubitem Mat\'ern, 94
+      \subsubitem RBF, 94
+      \subsubitem RQ, 94
+  \item microinstability, 22, 46, 73
+    \subitem cut-off, 20
+    \subitem growth rate, 19
+
+  \indexspace
+
+  \item phase space, 10
+  \item PVI, 26, 33, 60
+
+  \indexspace
+
+  \item Reynolds number, 29
+
+  \indexspace
+
+  \item simulation
+    \subitem 2.5-D, 41
+    \subitem 3-D PIC, 40
+    \subitem hybrid, 40
+    \subitem kinetic, 40
+    \subitem MHD, 40
+  \item spacecraft
+    \subitem MMS, 37
+    \subitem PSP, 38
+    \subitem Wind, 35
+
+  \indexspace
+
+  \item Thermal Speed, 14
+  \item threshold, 19, 23, 26
+  \item time scale
+    \subitem linear, 33
+    \subitem nonlinear, 34
+  \item turbulence, 29, 57, 74
+
+  \indexspace
+
+  \item Vlasov, 40, 84
+    \subitem equation, 13
+    \subitem linear Vlasov theory, 21
+
+\end{theindex}

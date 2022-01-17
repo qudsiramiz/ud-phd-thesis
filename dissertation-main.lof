@@ -1,0 +1,40 @@
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Plasma parameter distributions at 1\,au }}{6}{figure.caption.7}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Earth's Magnetosphere's structure}}{8}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Temperature distribution at 1\,au}}{21}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces $R_{\rm p}$ distribution at 1\,au and in magnetosheath}}{22}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces $\gamma $ Contours}}{23}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Brazil-plot at 1\,au}}{24}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Brazil-plot in magnetosheath}}{25}{figure.caption.15}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Plot of $\beta _{\parallel \rm p}, R_{\rm p}, J_{\rm z} \mathrm {\,and\,} \gamma $ for \texttt {149p6} dataset}}{49}{figure.caption.29}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Plot of $\beta _{\parallel \rm p}, R_{\rm p}, J_{\rm z} \mathrm {\,and\,} \gamma $ for \texttt {kaw} dataset}}{50}{figure.caption.30}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Plot of $\beta _{\parallel \rm p}, R_{\rm p}, J_{\rm z} \mathrm {\,and\,} \gamma $ for \texttt {ros} dataset}}{51}{figure.caption.31}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Time series plot of $\beta _{\parallel \rm p}, R_{\rm p}, J_z \mathrm {\,and\,} \gamma $ for \texttt {mms} dataset}}{52}{figure.5.4}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Time series plot of $\beta _{\parallel \rm p}, R_{\rm p}, J_{\rm z} \mathrm {\,and\,} \gamma $ for \texttt {wnd} dataset}}{53}{figure.5.5}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Spacecraft and simulation comparison of $\gamma $ time series}}{54}{figure.caption.32}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces $\mathcal {I}$ comparisons for different $\tau $}}{64}{figure.6.1}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Joint histogram of $T_{\parallel p}$ and $\mathcal {I}$}}{65}{figure.caption.34}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces PDF of $T_{\rm \parallel p}$ for various $\mathcal {I}$ for \texttt {psp} dataset}}{66}{figure.caption.35}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces PDF of $T_{\rm \parallel p}$ for various $\mathcal {I}$ for \texttt {mms} dataset}}{67}{figure.caption.36}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Conditionally averaged $T_{\rm \parallel p}$ from a $\mathcal {I}$ event}}{70}{figure.caption.37}%
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Comparison plot of $\Gamma _{\qopname \relax m{max}}$, $\omega _{\rm nl}$ and $\Gamma _{\qopname \relax m{max}}/\omega _{\rm nl}$ for simulations}}{77}{figure.7.1}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Comparison plot of $\Gamma _{\qopname \relax m{max}}$, $\omega _{\rm nl}$ and $\Gamma _{\qopname \relax m{max}}/\omega _{\rm nl}$ for \texttt {mms} dataset}}{79}{figure.7.2}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Comparison plot of $\Gamma _{\qopname \relax m{max}}$, $\omega _{\rm nl}$ and $\Gamma _{\qopname \relax m{max}}/\omega _{\rm nl}$ for \texttt {wnd} dataset}}{80}{figure.7.3}%
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Comparison plot of $\Gamma _{\qopname \relax m{max}}$, $\omega _{\rm nl}$ and $\Gamma _{\qopname \relax m{max}}/\omega _{\rm nl}$ for \texttt {psp} dataset}}{81}{figure.7.4}%
+\contentsline {figure}{\numberline {7.5}{\ignorespaces KDE plots for all six datasets}}{82}{figure.7.5}%
+\contentsline {figure}{\numberline {7.6}{\ignorespaces $(R_{\rm p}, \beta _{\parallel \rm p})$-plot of $\Gamma _{\qopname \relax m{max}}$, $\omega _{\rm nl}$ and $\Gamma _{\qopname \relax m{max}}/\omega _{\rm nl}$ for \texttt {mms} dataset}}{85}{figure.7.6}%
+\contentsline {figure}{\numberline {7.7}{\ignorespaces $(R_{\rm p}, \beta _{\parallel \rm p})$-plot of $\Gamma _{\qopname \relax m{max}}$, $\omega _{\rm nl}$ and $\Gamma _{\qopname \relax m{max}}/\omega _{\rm nl}$ for \texttt {wnd} dataset}}{86}{figure.7.7}%
+\contentsline {figure}{\numberline {7.8}{\ignorespaces $(R_{\rm p}, \beta _{\parallel \rm p})$-plot of $\Gamma _{\qopname \relax m{max}}$, $\omega _{\rm nl}$ and $\Gamma _{\qopname \relax m{max}}/\omega _{\rm nl}$ for \texttt {psp} dataset}}{87}{figure.7.8}%
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Configuration for 24 spacecraft}}{96}{figure.caption.39}%
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Reconstructed field (x-component), linear configuration}}{98}{figure.caption.40}%
+\contentsline {figure}{\numberline {8.3}{\ignorespaces Reconstructed field (y-component), linear configuration}}{99}{figure.caption.41}%
+\contentsline {figure}{\numberline {8.4}{\ignorespaces Reconstructed field (z-component), linear configuration}}{100}{figure.caption.42}%
+\contentsline {figure}{\numberline {8.5}{\ignorespaces Reconstructed field, linear configuration}}{101}{figure.caption.43}%
+\contentsline {figure}{\numberline {8.6}{\ignorespaces Reconstructed field (x-component), circular configuration}}{101}{figure.caption.44}%
+\contentsline {figure}{\numberline {8.7}{\ignorespaces Reconstructed field (y-component), circular configuration}}{102}{figure.caption.45}%
+\contentsline {figure}{\numberline {8.8}{\ignorespaces Reconstructed field (z-component), circular configuration}}{102}{figure.caption.46}%
+\contentsline {figure}{\numberline {8.9}{\ignorespaces Reconstructed field, circular configuration}}{103}{figure.caption.47}%
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Brazil-plot of \texttt {149p6} dataset}}{115}{figure.caption.49}%
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Brazil-plot of \texttt {kaw} dataset}}{116}{figure.caption.50}%
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Brazil-plot of \texttt {2dsim} dataset}}{117}{figure.caption.51}%
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Brazil-plot of \texttt {ros} dataset}}{118}{figure.caption.52}%
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Brazil-plot of \texttt {psp} dataset}}{119}{figure.caption.53}%
