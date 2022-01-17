@@ -1,0 +1,83 @@
+%
+% This is the Appendix B file (appB.tex)
+%
+%\appendix{Equation of State} \label{apdx:B}
+%
+%    Equation 7.19 in \citet{Baumjohann1996} gives the relation between temperature and particle
+%    density as:
+%    \begin{align}
+%        T ~\alpha~ n^{\gamma-1} \label{eq:adb1}
+%    \end{align}
+%    where $\gamma$ is the adiabatic index. And since particle flux density is conserved, assuming
+%    constant velocity of particle, at any distance, $r$, from the Sun we have:
+%    \begin{align}
+%        n ~ 4\pi r^2 & = const.\\
+%        \implies n ~ & \alpha ~ r^{-2} \label{eq:adb2}
+%    \end{align}
+%    Substituting for $r$ from \Cref{eq:adb2} in \Cref{eq:adb1} and using $\gamma = 5/3$, we have :
+%    \begin{align}
+%        T ~\alpha~ r^{-2(\gamma-1)}\\
+%        \implies T ~\alpha~ r^{-4/3}
+%    \end{align}
+
+\appendix{CGL invariants} \label{apdx:B}
+
+This appendix details the Chew–Goldberger–Low (CGL) invariants as mentioned in \Cref{sec:hop}.
+
+%In a plasma for the $j^{\rm th}$ species, the \textit{energy density conservation equation} is
+%given as: \begin{align} \frac{3}{2} n_{\rm j} k_{\rm B} \left( \frac{\partial T_{\rm j}}{\partial
+%t} + \mathbf{v}_{\rm j} \cdot \nabla T_{\rm j} \right) + p_{\rm j} \nabla \cdot \mathbf{v}_{\rm j}
+%= - \nabla \cdot \mathbf{q}_{\rm j} - \left(\mathbf{P}'_{\rm j} \cdot \nabla \right) \cdot
+%\mathbf{v}_{\rm j} \label{eq:cgl1} \end{align} where $\mathbf{q}_{\rm j}$ is the heat flux vector,
+%$\mathbf{P}_{\rm j}'$ is the stress tensor part of the full pressure tensor $\mathbf{P}_{\rm j}$
+%and the other symbols have their usual meaning as define in the thesis.
+
+%If we assume the pressure to be isotropic and that their time variations are happening
+%adiabatically that is they are fast enough that no perceptible heat exchange takes place as the
+%plasma evolves, then the right side of \Cref{eq:cgl1} is simply zero. And thus we can write the
+%left side of the equation as: \begin{align} \frac{3}{2}\frac{d\left(n_{\rm j}\,k_{\rm B}\,T_{\rm
+%j}\right)}{d\,t} - \frac{5}{2} k_{\rm B}\, T_{\rm j} \frac{dn_{\rm j}}{dt} & = 0 \label{eq:cgl2}
+%\end{align} which is same as: \begin{align} n_{\rm j}\,\frac{dT_{\rm j}}{dt} - \frac{2}{3}\,T_{\rm
+%j}\,\frac{dn_{\rm j}}{dt} & = 0 \label{eq:cgl3} \end{align}
+
+As mentioned in \Cref{sec:hop}, for a slowly changing magnetic field (compared to the ion gyrotropic
+time scale) we have conservation of magnetic moment ($\mu$) of the particle and thus we have:
+\begin{align}
+    \frac{d \mu}{dt} & = 0 \label{eq:cgl1}
+\end{align}
+where, $\mu = m_{\rm p}\,w_{\rm \perp p}^2/(2B)$, $m_{\rm p}$ is the proton mass, $w_{\rm \perp
+p}^2$ is the perpendicular thermal velocity and $B$ is the magnitude of magnetic field. Writing
+\Cref{eq:cgl1} in terms of proton-perpendicular temperature using \Cref{eq:temp}, we have:
+\begin{align}
+    \frac{d}{dt} \left(\frac{k_{\rm B} T_{\rm \perp p}}{B}\right) & = 0 \label{eq:cgl2}
+\end{align}
+or:
+\begin{align}
+    T_{\rm \perp p} & \propto B \label{eq:cgl3}
+\end{align}
+
+For the parallel case, consider the equation for parallel pressure ($p_\parallel$), for which under
+similar assumptions one can write \citep{Baumjohann1996}:
+\begin{align}
+    p_\perp \, \frac{dp_\parallel}{dt} + 2\,p_\parallel\,\frac{dp_\perp}{dt} + 5\,p_\perp p_\parallel \, \nabla \cdot \mathbf{v} & = 0\label{eq:cgl4}
+\end{align}
+Substituting for $\nabla \cdot \mathbf{v}$ from the continuity equation (\Cref{eq:cgl5}),
+\begin{align}
+    \frac{\partial n}{\partial t} + \mathbf{v} \cdot \nabla n + n \nabla \cdot \mathbf{v} & = 0 \label{eq:cgl5}
+\end{align}
+and the fact that $d/dt = \partial/\partial t + \mathbf{v}\cdot\nabla$, we can rewrite
+\Cref{eq:cgl4} as:
+\begin{align}
+    \frac{d}{dt}\left(\frac{p_\parallel p_\perp^2}{n^5} \right) & = 0 \label{eq:cgl6}
+\end{align}
+or:
+\begin{align}
+        \frac{d}{dt} \left(\frac{p_\parallel B^2}{n^3}\right) & = 0 \label{eq:cgl7}
+\end{align}
+which in terms of temperature can be written as:
+\begin{align}
+    T_\parallel \propto \left(n/B\right)^2 \label{eq:cgl8}
+\end{align}
+which is same as \Cref{eq:mu_4}.
+
+\Cref{eq:cgl2,eq:cgl7} are referred as the \textit{Chew–Goldberger–Low} invariants.

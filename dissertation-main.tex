@@ -1,0 +1,257 @@
+% This file (dissertation-main.tex) is the main file for a dissertation.
+\documentclass[twoside]{udthesis}
+% preamble
+
+% Use package list
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathalpha}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{rotating}
+\usepackage{wrapfig}
+\usepackage[normalem]{ulem}
+\usepackage[utf8]{inputenc}
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+\usepackage{natbib}
+\usepackage[yyyymmdd,hhmmss]{datetime}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{caption}
+%\captionsetup[table]{font=small,skip=0pt}
+\captionsetup[figure]{font=small,skip=5pt}
+\usepackage{listings}
+\usepackage{cleveref}
+%\crefname{subsection}{subsection}{subsections}
+\usepackage{wrapfig}
+\usepackage{pdfpages}
+\usepackage{imakeidx}
+\makeindex
+%\usepackage[totoc]{idxlayout}
+% User defined new commands
+\newcommand{\vdag}{(v)^\dagger}
+\newcommand\aastex{AAS\TeX}
+\newcommand\latex{La\TeX}
+\newcommand\todo[1]{\textcolor{red}{#1}}
+\newcommand\nt[1]{\textcolor{red}{#1}}
+\newcommand\st[1]{\sout{#1}}
+\newcommand{\cc}{\textcolor{red}{\scriptsize{(citation needed)\,}}}
+\newcommand{\sun}{$\odot$}
+\newcommand{\isois}{IS$\odot$IS}
+\newcommand{\apj}{The Astrophysical Journal}
+\newcommand{\apjl}{The Astrophysical Journal Letters}
+\newcommand{\apjs}{The Astrophysical Journal Supplement Series}
+\newcommand{\ssr}{Space Science Reviews}
+\newcommand{\grl}{Geophysical Research Letters}
+\newcommand{\jgr}{Journal of Geophysical Research}
+\newcommand{\prl}{Physical Review Letters}
+\newcommand{\pre}{Physical Review E}
+\newcommand{\aap}{Astronomy and Astrophysics}
+\newcommand{\pof}{Physics of Fluids}
+\newcommand{\AdvSpRes}{Advances in Space Research}
+    
+\setlength{\unitlength}{1mm}
+
+\newcommand{\Newdot}{{\leavevmode\put(0,.63){\circle*{2}}}}
+
+\newcommand{\discolorlinks}[1]{{\hypersetup{hidelinks}#1}}
+
+\renewcommand\bibname{BIBLIOGRAPHY}
+
+\setcitestyle{citesep={;}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usepackage{xparse} % not needed for LaTeX 2020-10-01 or later
+
+%Define macros for drawing every 0-9 numbers at unit place
+\NewDocumentCommand{\cistercianzero}{}{\draw[black, thick] (0,-0.5)--(0, 0.5)}
+\NewDocumentCommand{\cistercianone}{}{\draw[black, thick] (0,0.5)--(0.25, 0.5)}
+\NewDocumentCommand{\cisterciantwo}{}{\draw[black, thick] (0,0.25)--(0.25, 0.25)}
+\NewDocumentCommand{\cistercianthree}{}{\draw[black, thick] (0,0.5)--(0.25, 0.25)}
+\NewDocumentCommand{\cistercianfour}{}{\draw[black, thick] (0,0.25)--(0.25, 0.5)}
+\NewDocumentCommand{\cistercianfive}{}{\cistercianone; \cistercianfour;}
+\NewDocumentCommand{\cisterciansix}{}{\draw[black, thick] (0.25,0.25)--(0.25, 0.5)}
+\NewDocumentCommand{\cistercianseven}{}{\cistercianone; \cisterciansix;}
+\NewDocumentCommand{\cistercianeight}{}{\cisterciantwo; \cisterciansix;}
+\NewDocumentCommand{\cisterciannine}{}{\cistercianone; \cisterciantwo; \cisterciansix;}
+
+\NewDocumentCommand{\cisterciandigit}{mmm}{%
+  % #1 = xscale, #2 = yscale, #3 = digit
+  \begin{scope}[xscale=#1,yscale=#2] #3; \end{scope}%
+}
+% units: {1}{1}{digit}
+% tens: {-1}{1}{digit}
+% hundreds: {1}{-1}{digit}
+% thousands: {-1}{-1}{digit
+
+\ExplSyntaxOn
+\NewDocumentCommand{\cistercian}{O{1}m}
+ {% force digits; #1 is the optional scale
+  \azireo_cistercian:ne { #1 } { \int_to_arabic:n { #2 } }
+ }
+\cs_new_protected:Nn \azireo_cistercian:nn
+ {% pad to four digits
+  \__azireo_cistercian_split:ne { #1 } { \prg_replicate:nn {4-\tl_count:n{#2}}{0} #2 }
+ }
+\cs_generate_variant:Nn \azireo_cistercian:nn { ne }
+
+\cs_new_protected:Nn \__azireo_cistercian_split:nn
+ {% gather the digits
+  \__azireo_cistercian_split:nNNNN { #1 } #2
+ }
+\cs_generate_variant:Nn \__azireo_cistercian_split:nn { ne }
+
+\cs_new_protected:Nn \__azireo_cistercian_split:nNNNN
+ {% the digit are used in reverse
+  \__azireo_cistercian_print:nnnnn { #1 }
+   { \azireo_cistercian_digit:n { #5 } }
+   { \azireo_cistercian_digit:n { #4 } }
+   { \azireo_cistercian_digit:n { #3 } }
+   { \azireo_cistercian_digit:n { #2 } }
+ }
+\cs_new_protected:Nn \azireo_cistercian_digit:n
+ {% choose the representation for the digit
+  \int_case:nn { #1 }
+   {
+    %{0}{\cistercianzero} % the base is already present, no need to repeat it
+    {1}{\cistercianone}
+    {2}{\cisterciantwo}
+    {3}{\cistercianthree}
+    {4}{\cistercianfour}
+    {5}{\cistercianfive}
+    {6}{\cisterciansix}
+    {7}{\cistercianseven}
+    {8}{\cistercianeight}
+    {9}{\cisterciannine}
+   }
+ }
+\cs_new_protected:Nn \__azireo_cistercian_print:nnnnn
+ {
+  \begin{tikzpicture}[scale=#1]
+  \cistercianzero;              % base
+  \cisterciandigit{ 1}{ 1}{#2}; % units
+  \cisterciandigit{-1}{ 1}{#3}; % tens
+  \cisterciandigit{ 1}{-1}{#4}; % hundreds
+  \cisterciandigit{-1}{-1}{#5}; % thousands
+  \end{tikzpicture}
+ }
+\ExplSyntaxOff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{chappage}[chapter]% chappage is slave to chapter
+\renewcommand{\thechappage}{\stepcounter{chappage}\arabic{chappage}}
+
+\usepackage{fancyhdr}% http://ctan.org/pkg/fancyhdr
+\fancypagestyle{plain}{% 'plain' page style (used for first page of chapter)
+  \fancyhf{}% clear all header and footer fields
+  \renewcommand{\headrulewidth}{0pt}% no header rule
+  \renewcommand{\footrulewidth}{0pt}% footer rule
+  \fancyhead[RO]{\thechapter-\thechappage}% 
+  %\fancyhead[LE,RO]{\thechapter-\thechappage}% 
+  \fancyfoot[C]{\cistercian{\thepage}}
+  %\fancyfoot[C]{\thepage}
+}
+% Regular 'fancy' page style
+\fancyhf{}% clear all header and footer fields
+\fancyhead[LE,RO]{\thechapter-\thechappage}
+\fancyfoot[C]{\cistercian{\thepage}}
+%\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.1pt}% header rule
+\renewcommand{\footrulewidth}{0pt}% footer rule
+\pagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\renewcommand{\thepage}{\cistercian{\arabic{page}}}
+
+\begin{document}
+\include{dissertation-tap}
+                   % This file (dissertation-tap.tex) contains the Title
+                   % and Approval Page information for a dissertation.
+
+%\newpage\null\thispagestyle{empty}\newpage
+
+%\include{cistercian_numerals}
+
+%\include{epigraph} % This file (epigraph.tex) contains the text
+                   % for epigraph.
+
+\include{chap1}    % This file (chap1.tex) contains the text
+                   % for Chapter 1.
+
+%\newpage\null\thispagestyle{empty}
+
+\include{chap2}    % This file (chap2.tex) contains the text
+                   % for Chapter 2.
+
+\newpage\null\thispagestyle{empty}
+
+\include{chap3}    % This file (chap3.tex) contains the text
+                   % for Chapter 3.
+
+\include{chap4}    % This file (chap4.tex) contains the text
+                   % for Chapter 4.
+
+\include{chap5}    % This file (chap5.tex) contains the text
+                   % for Chapter 5.
+
+\newpage\null\thispagestyle{empty}
+
+\include{chap6}    % This file (chap6.tex) contains the text
+                   % for Chapter 6.
+
+\include{chap7}    % This file (chap7.tex) contains the text
+                   % for Chapter 7.
+
+\include{chap8}    % This file (chap8.tex) contains the text
+                   % for Chapter 8.
+
+\newpage\null\thispagestyle{empty}
+
+\include{chap9}    % This file (chap9.tex) contains the text
+                   % for Chapter 9.
+
+\newpage\null\thispagestyle{empty}
+\newpage\null\thispagestyle{empty}
+
+%\include{ref}      % This file (ref.tex) contains the text
+                   % for the references.
+
+\vspace*{\fill}
+\hspace*{0pt}\hfill \Huge{BIBLIOGRAPHY} \hspace*{0pt}\hfill
+\vspace*{\fill}
+\normalsize
+\newpage\null\thispagestyle{empty}
+
+\include{bibtex}   % This file (bibtex.tex) contains the text
+                   % for a bibliography if using BibTeX with
+                   % sample.bib
+
+%\newpage\null\thispagestyle{empty}\newpage
+
+%\include{app}      % This file (app.tex) contains the text
+                   % for one Appendix. 
+
+\vspace*{\fill}
+\hspace*{0pt}\hfill \Huge{APPENDIX} \hspace*{0pt}\hfill
+\vspace*{\fill}
+\normalsize
+\newpage\null\thispagestyle{empty}\newpage
+
+\include{appA}     % This file (appA.tex) contains the text
+                   % for Appendix A. 
+
+\include{appB}     % This file (appB.tex) contains the text
+                   % for Appendix B.   
+
+\include{appC}     % This file (appC.tex) contains the text
+                   % for Appendix C.
+
+\include{appD}     % This file (appD.tex) contains the text
+                   % for Appendix D.
+
+\printindex
+\end{document}

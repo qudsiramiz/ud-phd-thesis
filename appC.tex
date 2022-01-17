@@ -1,0 +1,69 @@
+%
+% This is the Appendix C file (appC.tex)
+%
+\appendix{Gaussian Processes Algorithm} \label{apdx:C}
+
+    This appendix details the Gaussian Processes Regression followed in Section~\ref{sec:meth8}. We
+    start with the \texttt{ros} dataset. As discussed in \Cref{sec:3pic} the dataset has a
+    resolution of $2048^3$ cells with a box size of $\sim 42\,d_{\rm i}$. Since the resolution of
+    reconstructed image is of the order of $d_{\rm i}$, we decided to downsample the dataset using
+    \texttt{block\_reduce} in \texttt{skimage}. We lowered the resolution to 42 cells along $x$ and
+    $y$-directions, and 128 cells along $z$-direction. In units of $d_{\rm i}$, this gives us
+    resolution of $\sim 0.3\,d_{\rm i}$ in $z$-direction and $1\,d_{\rm i}$ along the other two. The
+    reason for different resolutions is the fact that along $xy$-plane, the resolution is limited by
+    the minimum separation between two spacecraft ($1\,d_{\rm i}$), whereas along the $z$-direction
+    it is the sampling rate of our instrument which determines the resolution.
+    
+    Here we list typical values of some of the parameters associated with the simulation and solar
+    wind at 1\,au:
+    \begin{align*}
+        d_i \rm{(1\,au)} & \sim 100 ~\rm{km} \\
+        V_{sw} & \sim 500 ~\rm{km/sec} \\
+        X_{sim} \rm{(box size)} & \sim 40\,d_{\rm i} \\
+        & \sim 4\times 10^3\,\rm{km} \\
+        d_{\rm spc} & \sim [1, 11]\,d_{\rm i} \\
+        & \sim \rm{ [10^2, 10^3]\,km} \\
+        f_{\rm min} & \sim V_{sw}/(2\times d_{spc, min}) \\
+        & \sim 2.5\,\rm{Hz} \\
+    \end{align*}
+    At the assumed solar wind speed of $500\,\rm{km/s}$, it takes the spacecraft configuration
+    roughly 10 seconds to cross the whole box. And because of Nyquist criteria, we must have a
+    sampling rate faster than $2.5\,\rm{Hz}$. Because of restrictions provided by Nyquist frequency
+    and the box size and because we wanted to have a sample at every plane along the $z$-direction,
+    we chose a sampling frequency of $40\,\rm{Hz}$. This is easily achievable for modern day
+    magnetometers \citep{Bale2016, Russell2016}.
+
+    Once we have the sampling rate and the spacecraft configuration fixed, we virtually fly through
+    the simulation box and collect data for each spacecraft. At the end of simulated flight we have
+    $n_{\rm spc}$ (number of spacecraft) number of data points for each plane and thus $128 \times
+    n_{\rm spc}$ total data points along with their positions. We then define a kernel and
+    associated variables as: \\
+    \texttt{pln} ~\texttt{=}~ \texttt{`xy'} \\
+    \texttt{drn} ~\texttt{=}~ \texttt{`z'} \\
+    \texttt{ck\_len} ~\texttt{=}~ \texttt{5} \\
+    \texttt{mat\_len\_scl} ~\texttt{=}~ \texttt{[2,2,6]} \\
+    \texttt{mat\_nu} ~\texttt{=}~ \texttt{5/2} \\
+    \texttt{sigma\_0} ~\texttt{=}~ \texttt{0} \\
+    \texttt{n\_restarts\_optimizer} ~\texttt{=}~ \texttt{20} \\
+    \texttt{kernel} ~\texttt{=}~ \texttt{ CK(ck\_len, (1e-2, 1e2)) + CK(ck\_len, (1e-2, 1e2)) *} \\
+    \indent \indent \texttt{Matern(length\_scale=mat\_len\_scl, nu=mat\_nu)} \\
+    \\
+    we then run the Gaussian Processes with the selected kernel:\\
+    \texttt{gp} ~\texttt{=}~\texttt{GaussianProcessRegressor(kernel=kernel, } \\
+    \indent \indent \texttt{n\_restarts\_optimizer=n\_restarts\_optimizer)} \\
+    \\
+    We can then get the model based on the data collected by the spacecraft:\\
+    \texttt{gp.fit(X, y)} \\
+    \\
+    and then provide \texttt{gp.fit} with the coordinate of all the locations at which we want to
+    find the value of the field:\\ 
+    \texttt{y\_pred, mse\_pred = gp.predict(x1x2x3, return\_std=True)} \\
+    \\
+    and reshape the output get the final value of field at each point:\\
+    \texttt{Zp = np.reshape(y\_pred,(indx\_max - indx\_min + 1,}\\
+    \indent \texttt{indy\_max - indy\_min + 1, indz\_max - indz\_min + 1, 3))} \\
+    \texttt{MSE = np.reshape(mse\_pred,(indx\_max - indx\_min + 1,} \\
+    \indent \texttt{indy\_max - indy\_min + 1, indz\_max - indz\_min + 1))} \\
+    %\end{flalign*}
+
+    \texttt{Zp} is the output that we have plotted in \Crefrange{fig:gpr_cas_bx}{fig:gpr_bm}.

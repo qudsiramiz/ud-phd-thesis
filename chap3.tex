@@ -1,0 +1,210 @@
+%
+% This is Chapter 3 file (chap3.tex)
+%
+\chapter{Non-linear Plasma Dynamics}\label{chap:chap3}
+
+    \section{Introduction to Turbulence}\label{sec:intr3}
+
+        In laminar flow, different layers of fluid move smoothly without much mixing between layers,
+        and the characteristic quantities/parameters - like velocity, pressure, or density - vary
+        smoothly in a predictable way. A system where these quantities fluctuate in a chaotic
+        fashion is called turbulent and the phenomena is called turbulence\index{turbulence}. Because of the chaotic
+        nature of the fluctuations, unlike the laminar flow, prediction of the exact state of the
+        system is essentially impossible. This makes a system extremely complicated to study, so
+        much so that Sir Horace Lamb once remarked \citep{Goldstein1969}:
+
+        \begin{quote}
+             I'm an old man now, and when I die and go to heaven there are two matters on which I
+             hope for enlightenment. One is quantum electrodynamics, and the other is turbulent
+             motion of fluids. And about the former I'm rather optimistic.
+            %\footnote{To be honest as an Indian, I find the idea of a $19^{th}$ century British's
+            %assumption that they would go to heaven rather optimistic.}
+        \end{quote}
+
+        Turbulence is extremely complicated and the fact that it is ubiquitous in nature (and in
+        most man made processes involving fluids) makes it
+        unavoidable.%\footnote{Not that we would have avoided it anyway.}.
+
+        Whether a given fluid system will develop turbulence largely depends on its viscosity, which
+        is the liquid equivalent of friction and is a measure of how easy it is to for the liquid to
+        flow \citep{Chapman1916, Jeans1905} and its Reynolds number
+        \citep{Reynolds1883,Reynolds1886,Matthaeus1980}. A small Reynolds number\index{Reynolds number} means that the
+        system is laminar whereas a high value Reynolds number implies turbulent flow. For a neutral
+        fluid it is defined as:
+        \begin{align}
+            R_{\rm e} = L \frac{u}{\nu} \label{eq:rnld}
+        \end{align}
+        where $L$ is the characteristic length of the system, $u$ is the mean flow velocity and
+        $\nu$ is the kinematic viscosity. For a similar amount of force or external pressure, a
+        highly viscous fluid or one with low $R_{\rm e}$ can maintain laminar flow for much longer
+        duration than a fluid with low viscosity or high $R_{\rm e}$. Presence of viscosity in a
+        fluid leads to interaction between different layers or scales and results in energy transfer
+        from larger to smaller scales through eddies which eventually reaches the smallest scale and
+        dissipate as heat \citep{Kolmogorov1941a, Kolmogorov1941} in a process called energy cascade
+        in turbulence. In a weakly collisional and magnetized plasma, the presence of charged
+        particle and magnetic field complicates the process. For a system like solar wind, the
+        situation is further complicated because of the relatively similar size of the system and
+        the mean free path\footnote{Mean free path is defined as the average distance travelled by
+        particles between two successive collisions.}\citep[Appendix 2]{Echim2010} both of which are
+        of the order of 1\,au \citep[Table 1]{Verscharen2019} and thus one cannot use the classic
+        methodology developed by \citet{Enskog1917} and \citet{Chapman1918}.
+
+        Turbulence cascade has far reaching consequences for both neutral fluids and plasmas. It
+        provides a pathway for the dissipation or transfer of energy from large scales, where they
+        can be introduced, to smaller scales. In the next section (\Cref{sec:inter3b}) we will look
+        at some of the consequences of turbulence in space plasmas. We discuss only those which are
+        relevant to this thesis. In \Cref{sec:nlts} we discuss the linear and non-linear time scales
+        associated with their respective phenomena.
+
+    \section{Consequences of Turbulence in Space Plasmas} \label{sec:inter3b}
+
+        In-situ observations and theoretical interpretations have established the ubiquitous
+        presence of turbulence in space plasmas \citep[and references
+        therein]{Matthaeus2011,Matthaeus2021}. In this section we discuss three of the major
+        consequences that arise because of turbulence in space plasmas. Though these three are not
+        the only consequences of turbulence, these were selected because of their relevance to this
+        thesis, as we will see in \Cref{chap:chap5,chap:chap6,chap:chap7}.
+
+        \subsection{Heating of plasma} \label{sec:hop}
+
+            In space plasmas, under the assumption that the magnetic field changes slowly (slower
+            than the ion gyrotropic time scale), the magnetic moment ($\mu$) of the particle is
+            conserved \citep{Baumjohann1996,Verscharen2019}. Thus, we can write:
+            \begin{align}
+                \frac{d \mu}{dt} & = 0 \label{eq:mu_0}
+            \end{align}
+            where, $\mu = m_{\rm p}\,w_{\rm \perp p}^2/(2B)$, $m_{\rm p}$ is the proton mass,
+            $w_{\rm \perp p}^2$ is the perpendicular thermal velocity and $B$ is the magnitude of
+            magnetic field. Writing \Cref{eq:mu_0} in terms of the proton-perpendicular temperature
+            using \Cref{eq:temp}, we have:
+            \begin{align}
+                \frac{d}{dt} \left(\frac{k_{\rm B} T_{\rm \perp p}}{B}\right) & = 0 \label{eq:mu_1}
+            \end{align}
+            or:
+            \begin{align}
+                T_{\rm \perp p} & \propto B \label{eq:mu_2}
+            \end{align}
+            In a similar vein for the parallel direction, under the assumption of no dissipation, we
+            have:
+            \begin{align}
+                \frac{d}{dt} \left(\frac{k_{\rm B} T_{\rm \parallel p} B^2}{n_{\rm p}^2}\right) & = 0 \label{eq:mu_3}
+            \end{align}
+            or:
+            \begin{align}
+                T_{\rm \parallel p} & \propto \left(\frac{n_{\rm p}}{B}\right)^2 \label{eq:mu_4}
+            \end{align}
+            These two conservation laws (\Cref{eq:mu_2,eq:mu_4}) for the \textit{double-adiabatic
+            invariants} are also called \textit{Chew–Goldberger–Low or CGL invariants} (for a bit
+            more detailed discussion and derivation of CGL invariants, see see \Cref{apdx:B}).
+
+            In the inner heliosphere, the magnitude of magnetic field (B) varies with solar distance
+            as $B \propto r^{-1.5}$ \citep{Hellinger2013,Hanneson2020}, and the proton density
+            varies as $n_{\rm p} \propto r^{-1.9}$ \citep{Hellinger2013}. If the CGL invariants were
+            actively being conserved, the radial dependence for the perpendicular and parallel
+            temperatures would be:
+            \begin{align}
+                %\begin{split}
+                    T_{\rm \perp p} & \propto r^{-1.5} \label{eq:tperp_trend}\\
+                    T_{\rm \parallel p} & \propto r^{-0.8} \label{eq:tpar_trend}
+                %\end{split}
+            \end{align}
+            However, in-situ observations in the inner as well as outer heliosphere show a much
+            flatter curve than those predicted by \Cref{eq:tperp_trend,eq:tpar_trend}. Based on
+            Helios 1 and Helios 2 data, \citet{Hellinger2013} reported the value of exponents to be
+            $-0.58$ and $-0.59$ for perpendicular and parallel temperatures respectively and $-0.58$
+            for the scalar temperature for $r \in [0.3, 1]\,\rm{au}$.
+
+            Flatter than expected temperature curves imply the existence of some mechanism which
+            continues to heat the solar wind beyond the corona in both the parallel and
+            perpendicular directions. Indeed, several studies
+            \citep{ColemanJr1968,Verma1995,SorrisoValvo2007,MacBride2008} predict around
+            $1000\,\rm{kJ/kg/sec}$ is being added as internal energy to the plasma at 1\,au.
+            %\citet{Bandyopadhyay2020a} observed almost 2 order of magnitude higher heating rate
+            %closer to the sun at $r \approx 0.2\,\rm{au}$.
+            The dissipation of this energy at least partially accounts for the flatter radial trend
+            in solar-wind temperature than that predicted by the double adiabatic expansion
+            assumption.
+
+        \subsection{Anisotropy} \label{sec:aniso}
+        
+            In \Cref{sec:instab2} we discussed the fact that because of anisotropy\index{anisotropy}, VDFs have excess
+            free energy that results in development of microkinetic instabilities, though we did not
+            discuss the origin of such anisotropies. As we saw in \Cref{sec:hop}, turbulence results
+            in the transfer of heat from larger to smaller scales. However, in presence of an
+            external background magnetic field the rate at which transfer occurs is not identical in
+            each direction. Because of an uneven transfer along the parallel and perpendicular
+            direction relative to the average magnetic field (inhibition along the direction of
+            magnetic field), there is an imbalance between the amount of heating in different
+            directions, resulting in anisotropy \citep{Shebalin1983,Oughton1994}.
+
+        \subsection{Intermittency\index{Intermittency}}\label{sec:intmt}
+
+            The solar wind at 1\,au exhibits localized structures that have been studied since the
+            pioneering work of \citet{Burlaga1968}, \citet{Hudson1970}, \citet{Tsurutani1979}, and
+            more recently by \citet{Ness2001}, \citet{Neugebauer2006}, \citet{ErdHoS2008}. Several
+            studies have found evidence that plasma turbulence generates these structures
+            dynamically \citep{Matthaeus1986, Veltri1999, Osman2013}. The structures are
+            inhomogeneous and highly intermittent \citep{Osman2011, Osman2013,Greco2008}.
+            Intermittency or burstiness in measured properties of turbulence is typically associated
+            with the dynamical formation of coherent structures in space. These arise as a direct
+            consequence of discontinuities in the magnetic field
+            \citep{Greco2008,Greco2009,Vasquez2007}.
+
+            One method for identifying a discontinuity in a time series of magnetic-field (or any
+            other field in general) data is Partial Variance of Increments (PVI) \citep{Greco2008}.
+            PVI is a powerful and reliable tool for identifying and locating such regions and it is
+            unbiased towards any special structure since it cares only about the discontinuities in
+            the magnetic field. This also manifests as a shortcoming of the technique since one
+            cannot use it to study different kinds of discontinuities like radial or tangential
+            discontinuities. \citet{Greco2008} defines PVI\index{PVI} as:
+            \begin{align}
+                \mathcal{I}(t, \delta t) & = \frac{|\Delta \mathbf{B}(t, \delta t)|}{
+                    \sqrt{\langle |\Delta \mathbf{B}(t, \delta t)|^2 \rangle}} \label{eq:pvi}
+            \end{align}
+            where, $\Delta \mathbf{B}(t, \delta t) = \mathbf{B}(t+\delta t) - \mathbf{B}(t)$, is the
+            vector increment in magnetic field at any given time $t$ and a time lag of $\delta t$.
+            $\langle ...  \rangle$ is the ensemble average over a period of time, and $\mathcal{I}$
+            is the normalized PVI. For studying local structures induced by turbulence, $\delta t$
+            is typically chosen to be, assuming the validity of Taylor's hypothesis
+            \citep{Taylor1938} which was found to be valid for inner heliosphere
+            \citep{Chasapis2021}, of the order of $d_{\rm i}$.
+
+    \section{Linear and Non-linear Time Scales} \label{sec:nlts}
+
+        Since turbulence is not the only process that governs the dynamics, we must compare its
+        characteristic timescale with other with those of other relevant processes. As we saw in
+        \Cref{sec:instab2}, linear instabilities grow at growth rates of $\gamma_{\max}$. Inverse of
+        $\gamma_{\max}$ gives us a linear time scale\index{time scale!linear} associated with such microinstabilities.
+        \begin{align}
+            \tau_{\rm lin} & = \frac{2\,\pi}{\left(\gamma_{\max}/\Omega_{\rm cp}\right)} \label{eq:lt}
+        \end{align}
+        Here we have scaled time scale with the proton cyclotron frequency ($\Omega_{\rm{cp}}$) to
+        get a dimensionless timescale. This gives us an idea of timescales required by such linear
+        processes to affect the local plasma.
+
+        In a similar vein, one can compute nonlinear frequency associated with turbulence at any
+        position \textbf{r} for a lag length scale of $\ell$ as follows\footnote{Ideally, velocity
+        and not the magnetic field should be used for computing $\omega_{\rm nl}$. However, neither
+        of the spacecraft data we used has enough resolution for such computation. We thus fall back
+        to using magnetic field under the assumption of Alfv\'enic fluctuations.}:
+        \begin{align}
+            \omega_{\rm nl} \sim \delta b_\ell/\ell \label{eq:omnl}
+        \end{align}
+        where $\delta b_\ell$ is the change in the longitudinal magnetic field:
+        \begin{align}
+            \delta b_{\ell} = \left \lvert\hat{\boldsymbol{\ell}}
+            \mathbf{\cdot} \left[\mathbf{b} (\mathbf{r} + \boldsymbol{\ell}) - \mathbf{b}
+            (\mathbf{r})\right]\right\lvert \label{eq:db}
+        \end{align}
+        where \textbf{b} is the total magnetic field expressed in local Alfv\'en speed units
+        ($\mathbf{b} = \mathbf{B}/\sqrt{\mu_\circ n_{\rm p} m_{\rm p}}$). Thus nonlinear time scale\index{time scale!nonlinear}
+        has the expression:
+        \begin{align}
+            \tau_{\rm nl} & = \frac{2\,\pi}{\left(\omega_{\rm nl}/\Omega_{\rm cp}\right)} \label{eq:nlt}
+        \end{align}
+        These two processes under certain conditions might compete with each other and depending on
+        the value of other kinetic or turbulent parameters one or the other may dominate. A
+        simplistic understanding of this competition would imply that if one time scale is
+        significantly smaller than the other, then the processes associated with former time scale
+        will dominate the dynamics of the plasma. However, as we will see in \Cref{chap:chap7} the
+        situation is a bit more complicated than that.

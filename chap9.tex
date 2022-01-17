@@ -1,0 +1,78 @@
+%
+% This is Chapter 9 file (chap9.tex)
+%
+\chapter{Conclusion}\label{chap:chap9}
+
+    \section{Broader Context} \label{sec:bcc9}
+
+        Space plasmas such as the solar wind and terrestrial magnetosheath are highly structured and
+        dynamic systems. Over the last few decades, two different theoretical frameworks have been
+        developed to study their formation and evolution. The first uses linear Vlasov theory to
+        explore micro-scale phenomena: the effects of waves and the constraints imposed by
+        microinstabilities on the plasmas. The second includes the larger mesoscales and focuses on
+        non-linear processes such as turbulence and the coherent structures it generates.
+
+        Though both these frameworks have strong observational supports (see \Cref{sec:app2}), they
+        are incompatible as traditionally formulated. Linear theory explicitly assumes a homogeneous
+        background for the linear fluctuations that it studies. In contrast, turbulence produces
+        strong inhomogeneities at all scales --- including those of linear theory. Reconciling these
+        incongruous theories has motivated the work of this thesis.
+
+        We focused our work on ion temperature-anisotropy and heating. Many previous studies have
+        identified the heating of solar wind and magnetosheath to be ubiquitous but strongly
+        inhomogenous (see \Cref{sec:inter3b}). The rate of heating varies across time and space and
+        is often highly anisotropic which leads to strong temperature-anisotropies
+        ($T_{\perp}/T_{\parallel} \neq 1$). The observations and simulations strongly indicate that
+        turbulence produces inhomogeneous and anisotropic heating (see \Cref{sec:res5,sec:diss6}).
+        Likewise, the predicted constraints of linear Vlasov theory align well with the observed
+        distribution of ion temperature-anisotropy (see \Cref{sec:app2}). Despite their
+        contradictory assumptions, both turbulence and microinstabilities seem to substantially
+        affect ion-temperature in space plasmas. We conjectured that though turbulence produces
+        inhomogeneities, the plasma remains sufficiently homogeneous at the kinetic micro-scales for
+        the fastest modes of linear instability to develop.
+
+    \section{Summary of Key Results} \label{sec:summ9}
+
+        In \Cref{chap:chap5} we reported our analysis on the interplay of temperature-anisotropy
+        driven linear microkinetic instabilities and intermittency arising as a consequence of
+        turbulence. We showed that the two processes occur in close physical space. We also found
+        the indication that the linear instabilities occur in discrete regions or intervals in
+        different kinds of simulations as well as in in-situ data from space plasmas (see
+        \Crefrange{fig:brjhb}{fig:brjwnd}).
+
+        In \Cref{chap:chap6} we studied how intermittent structures affect the heating of the
+        nascent solar wind and the terrestrial magnetosheath.. We used PVI to quantify
+        intermittency. Study \citep{Osman2012a} using the same technique at 1\,au shows similar
+        result thereby suggesting the ubiquitous nature of PVI heating. While we observed strong
+        positive correlation between PVI and radial proton-temperature for the solar wind,
+        magnetosheath plasma show little correlation. As discussed in \Cref{sec:diss6} some of the
+        reasons for poor correlation might be the lower average value of PVI in magnetosheath as
+        compared to the solar wind, small duration of observations as well as the relatively longer
+        duration of the PVI events might be other contributing factors. In any case, this remains
+        poorly understood and rather surprising given the positive correlation observed between PVI
+        and the electron temperature \citep{Chasapis2018}. For the solar wind, we also found
+        elevated value of conditionally averaged radial temperature up to one correlation length
+        away from the point of a PVI event (see \Cref{fig:tem_pvi_lag}).
+
+        In \Cref{chap:chap7} we compare the characteristic time scales of microinstabilities to
+        those of turbulence at the same size scales for 6 different datasets. We observed that for
+        the vast majority of data points/regions where the conditions were unstable, turbulence time
+        scale is shorter than linear time scale (see
+        \Crefrange{fig:ratio_allsim}{fig:ratio_kde_all}). This means that linear instabilities
+        rarely have enough time to grow and affect the plasma before turbulence changes the plasma
+        conditions driving the instability. However, since anisotropy is well regulated by the
+        instability thresholds, we looked at the relative values of two time scales along the edges
+        of Brazil plot. We found that along the edges linear instabilities do become faster than
+        their turbulence counterpart and thus are able to regulate the extreme values of anisotropy
+        (see \Crefrange{fig:ratio_brz_mms}{fig:ratio_brz_wnd}).
+
+        At present we cannot image full structure of the interplanetary magnetic field using a few
+        spacecraft. However, constellations with larger and larger number of spacecraft are becoming
+        increasingly common with several possible missions to be launched in near future. Thus with
+        a view towards the future, we carried out a study in \Cref{chap:chap8} to reconstruct the
+        3-D topology and morphology of the interplanetary magnetic field from observations made by
+        such a constellation with finite number of spacecraft. Using Gaussian Processes in machine
+        learning for different configurations of number and arrangement of spacecraft, we showed
+        that we need a baseline of 24 spacecraft to successfully carry out such a process. A
+        complete 3-D image of the magnetic field will significantly advance our understanding of
+        turbulence in space plasmas and and shed light on the exact process of turbulence cascade.

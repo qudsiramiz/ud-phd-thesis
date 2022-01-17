@@ -1,0 +1,341 @@
+%
+% This is Chapter 4 file (chap4.tex)
+%
+\chapter{Datasets and Analysis Methods}\label{chap:chap4}
+
+    We utilized multiple datasets (both observational and theoretical) while working on this thesis.
+    This chapter gives a brief overview of all the datasets. \Cref{tab:datachap} summarizes these
+    datasets and how they were used.
+
+    \section{Spacecraft datasets}\label{sec:intr41}
+
+        \subsection{Wind}\label{sec:wind}
+
+            The Wind spacecraft\index{spacecraft!Wind} was launched on November 1, 1994 as part of international Solar
+            terrestrial Physics (ISTP) with the objective of studying plasma processes in the solar
+            wind near earth and in magnetosphere and ionosphere \citep{Acuna1995}. Wind is spin
+            stabilized and makes one complete rotation every $\sim$\,3 seconds about axis aligned to
+            perpendicular to the ecliptic plane \citep{Acuna1995, WilsonIII2021}. Wind's instruments
+            collectively produce $\sim$\,1,100 data variables or datasets \citep{WilsonIII2021}. The
+            instruments of interest to this thesis are the Magnetic Field Investigation (MFI) and
+            the Faraday Cup (FC). 
+
+            \paragraph*{MFI}\label{sec:mfi}
+
+                MFI consists of two fluxgate magnetometers mounted on a boom at distances of 8 and
+                12 meters from the spacecraft \citep{Lepping1995}. Though occasionally MFI can
+                provide data as fast as 44\,Sa/s\footnote{Samples per second.} with great accuracy
+                ($< 0.08\,\rm nT$), though 10.9\,Sa/s is the standard product and was used for this
+                thesis.
+
+            \paragraph*{FC}\label{sec:fc}
+
+                The Solar Wind Experiment (SWE) suite includes two Faraday cups (FC)
+                \citep{Ogilvie1995}. Each cup measures the current from incoming charged ions for a
+                different energy bin during each rotation measuring current in 20 different look
+                directions. It has 31\,energy bins which defines its resolution of the VDF. Since
+                each rotation lasts about 3\,seconds, it takes FC roughly 93\,seconds to collect the
+                full spectra. The current can then be converted to velocity of particle assuming an
+                appropriate charge to mass ratio. Since it takes roughly 93\,seconds to get the full
+                VDF, we get one measurement of parameters like density, velocity, temperature etc.
+                every 93\,seconds. Consequently, while pairing FC data with MFI data, we further
+                averaged MFI data to 93\,Sa/s. For an in depth discussion of extracting VDF from FC
+                observation and computation of higher order moments see \citet{Maruca2012a}.
+
+            \paragraph*{The \texttt{wnd} dataset} \label{sec:wndds}
+
+                In this thesis we use the Wind data from 1994 to 2008, which henceforth shall be
+                referred as \texttt{wnd} dataset. In the initial data cleaning process we discarded
+                any point which had $R_{\rm p} < 0.1$ or $R_{\rm p} > 10$. We also only selected
+                data from the pristine solar wind and discarded everything within the bow shock
+                region of the Earth. A more detailed description of the data selection process can
+                be found in \citet[\S4.1]{Maruca2012a}.
+
+                \textbf{Computing linear growth rate and non-linear frequency}: In order to compute
+                the value of linear growth rates at any point, we use the methodology mentioned in
+                \Cref{sec:cgr} by using the local values of $R_{\rm p}$ and $\beta_{\parallel \rm
+                p}$. We computed $\omega_{\rm nl}$ using \Cref{eq:omnl}, where we used
+                $x$-component\footnote{For Wind, $x$-direction is defined by the line joining the
+                Earth and the Sun.} of magnetic field for the longitudinal direction of \textbf{B}.
+                Use of \textbf{x}-component instead of radial component introduces a small error in
+                the computation of $\omega_{\rm nl}$ since the magnetic field at 1\,au is not
+                perfectly aligned with the radial direction (on average, the angle between magnetic
+                field and radial direction is $45^\circ$). The field also strongly fluctuates around
+                the average value. Alfv\'en speed was computed using the average field from MFI data
+                and $n_{\rm p}$ from FC as per equation \Cref{eq:alfv}. For lag we used $\ell =
+                1/k_{\max}$, where $k_{\max}$ is the wave number corresponding to $\gamma_{\max}$.
+                The lag of was taken as $1/k_{\max}$ in order to ensure that both $\gamma_{\max}$
+                and $\omega_{\rm nl}$ are being computed at the same scale.
+
+        \subsection{MMS}\label{sec:mms}
+
+            Magnetospheric Multiscale (MMS)\index{spacecraft!MMS} is a constellation of four spacecraft which was launched
+            by NASA on March 12, 2015. Main objective of the mission was to study how reconnection
+            happens in a collisionless plasma in the Earths magnetosphere \citep{Russell2016}. MMS
+            has 6 major instrument suites \citep{Russell2016} and in this thesis we used the data
+            from FIELDS and Fast Plasma Investigation (FPI).
+
+            \paragraph*{FIELDS} \label{sec:fields}
+
+                The FIELDS instrument suite consists of 2 different kind of fluxgate magnetometers,
+                a search coil magnetometer and an electron drift instrument \citep{Torbert2016}. The
+                flux gate magnetometers are mounted at the end of two 5\,m booms of each spacecraft
+                \citep{Russell2016}. The cadence of this FGMs is 128\,Hz meaning we get 128 samples
+                of magnetic field vector every 1 second with an accuracy of $\sim$\,0.1\,nT
+                \citep{Russell2016, Torbert2016}.
+
+            \paragraph*{FPI} \label{sec:fpi}
+
+                FPI uses electrostatic analyzer to measure the VDF of ions and electrons
+                \citep{Pollock2016}. It has $\mathrm{180}^\circ$ instantaneous polar field of view
+                at a resolution of $\mathrm{15}^\circ$. We use the proton density and temperature
+                anisotropy which are among the standard products of FPI. FPI works in 2 modes:
+
+                (a) \textbf{Slow/Survey mode}: which gives full 3-D VDF of ions every 1\,second.
+
+                (b) \textbf{Fast/Burst Mode}: which gives 1 measurement of ion VDF every 150\,ms.
+
+                \paragraph*{\texttt{mms} dataset} \label{sec:mmsds}
+
+                    Though in burst mode cadence of FPI is very high they generally last for only a
+                    few minutes. In our studies we thus used data from several different burst modes
+                    spread over multiple years and when the spacecraft was in magnetosheath.
+                    \Cref{tab:mmsdata} lists out all the dates and time from which data was used as
+                    well as gives value of the plasma parameters.
+                    \begin{table}[ht]
+                        \centering
+                        \caption[\texttt{mms} dataset details]{Burst data duration and median values of some plasma parameters}
+                        \begin{tabular}{  m{0.20\linewidth}  m{0.20\linewidth}  m{0.20\linewidth}
+                        m{0.25\linewidth}  }
+                            \hline
+                            \\
+                            \multirow{2}{\linewidth}{Date \scriptsize{(YYYYMMDD)}} &
+                            \multicolumn{2}{|c|}{Time \scriptsize{(HH:MM:SS) (GMT)}} &
+                            \multirow{2}{\linewidth}{Median Values} \\
+                            \cline{2-3}
+                            & Start \newline HH:MM:SS & End \newline HH:MM:SS & \\
+                            \hline
+                            \\
+                            20160111 & 00:57:04 & 01:00:33 & $n_{\rm p}$ = 52.04 $cm^{-3}$, \newline
+                            $v_{\rm p}$ = 261.47 $km/s$, \newline $T_{\rm p}$ = 2.53 $\times
+                            \mathrm{10^6} K$, \newline $R_{\rm p}$ = 1.09, \newline
+                            $\beta_{\parallel \rm p}$ = 6.54\\
+                            \\
+                            \hline
+                            \\
+                            20160124 & 23:36:14 & 23:47:33 & $n_{\rm p}$ = 32.57 $cm^{-3}$, \newline
+                            $v_{\rm p}$ = 242.21 $km/s$, \newline $T_{\rm p}$ = 3.98 $\times
+                            \mathrm{10^6} K$, \newline $R_{\rm p}$ = 0.99, \newline
+                            $\beta_{\parallel \rm p}$ = 12.57\\ \\
+                            \hline
+                            \\
+                            %20160125 & & & \\
+                            %\hline
+                            20170118 & 00:45:54 & 00:49:43 & $n_{\rm p}$ = 198.26 $cm^{-3}$,
+                            \newline
+                            $v_{\rm p}$ = 135.11 $km/s$, \newline $T_{\rm p}$ = 1.31 $\times
+                            \mathrm{10^6} K$, \newline $R_{\rm p}$ = 0.97, \newline
+                            $\beta_{\parallel \rm p}$ = 10.66\\ \\
+                            \hline
+                            \\
+                            %20170127 & & & \\
+                            %\hline
+                            20171226 & 06:12:43 & 06:52:22 & $n_{\rm p}$ = 22.29 $cm^{-3}$, \newline
+                            $v_{\rm p}$ = 243.50 $km/s$, \newline $T_{\rm p}$ = 2.66 $\times
+                            \mathrm{10^6} K$, \newline $R_{\rm p}$ = 1.04, \newline
+                            $\beta_{\parallel \rm p}$ = 4.29\\
+                            \\
+                            \hline
+                            %20181103 & & & \\
+                            %\hline
+                            \\
+                            All & & & $n_{\rm p}$ = 2.94 $cm^{-3}$, \newline $v_{\rm p}$ = 240.15
+                            $km/s$, \newline $T_{\rm p}$ = 2.74 $\times \mathrm{10^6} K$, \newline
+                            $R_{\rm p}$ = 1.01, \newline $\beta_{\parallel \rm p}$ = 5.34\\
+                            \\
+                            \hline
+                        \end{tabular}
+                        \label{tab:mmsdata}
+                    \end{table}
+
+            Once we have the required parameters we compute other derived parameters like $\gamma$
+            and $\omega_{\rm {nl}}$ in the same way as mentioned in \Cref{sec:wndds}. We refer to
+            the complete MMS dataset as \texttt{mms}.
+
+
+        \subsection{PSP}\label{sec:psp}
+
+            Parker Solar Probe\index{spacecraft!PSP} was launched on August 12, 2018 with the objective to understand the
+            dynamical structure of the sun, study and find the processes behind coronal heating and
+            find out the process that accelerates energetic particles \citep{Fox2015}. The
+            spacecraft has 4 major instrument suites: FIELDS, SWEAP, WISPR, \isois \citep{Fox2015}.
+
+            \paragraph*{FIELDS}\label{sec:fields2}
+
+                With main objective of measuring wave and turbulence in the inner heliosphere FIELDS
+                measures the magnetic field using both, search coils and fluxgate magnetometers
+                \citep{Bale2016}. All three magnetometers are mounted on a boom (search coil at
+                3.08\,m and 2 magnetometers at 1.9\,m and 2.7\,m). For this thesis we use the
+                magnetic field data from flux gate magnetometer. At the highest cadence magnetometer
+                can record field at a rate of 292.969\,Sa/s or 256\,Sa/NYS, where 1\,NYsecond is
+                defined as 0.837\,seconds \citep{Bale2016}\footnote{An alternate and definitely more
+                magically colorful definition of a New York second is given by Sir Terry Pratchett
+                as ``The shortest unit of time in the multiverse is the New York Second, defined as
+                the period of time between the traffic lights turning green and the cab behind you
+                honking.”}. Though for this thesis we mostly used data recorded at a slightly lower
+                cadence of 64\,Sa/S unless otherwise specified.
+
+            \paragraph*{SWEAP}\label{sec:sweap}
+
+                Solar Wind Electrons Alphas and Protons or SWEAP is the particle instrument suite on
+                PSP and is comprised of 4 sensor instruments and provides complete measurement of
+                electron, alpha and protons which makes up for almost 99\% of solar wind
+                \citep{Kasper2016}. Solar Probe Cup (SPC) and Solar Probe Analyzer (SPAN) make up
+                SWEAP. We are mostly interested in SPC which is a fast Faraday cup and looks
+                directly at the sun to measure the ion flux and its angle. The native cadence of SPC
+                is 1\,Hz or 1\,Sa/s at an angular resolution of $\mathrm{10}^\circ$, though in
+                another mode cadence can go as high as 16\,Hz at $\mathrm{1}^\circ$ resolution
+                \citep{Kasper2016}. For this thesis we used 1\,Hz data from SPC. Though for the
+                purpose of computation of anisotropy we resampled the data to 0.1\,Hz (see
+                \Cref{chap:chap7}).
+
+            \paragraph*{\texttt{psp} dataset} \label{sec:pspds}
+
+                We used the PSP data from its first encounter with the Sun (October 31 to November
+                11, 2018). From SPC we got the radial proton temperature/thermal speed. Since SPC
+                only measures radial temperature, and proton temperature is significantly
+                anisotropic \citep{Huang2020}, for computation of $\beta_{\parallel \rm p}$ we
+                needed to ensure that the temperature we were measuring was indeed parallel
+                temperature. Thus, we only considered data points where magnetic field was mostly
+                radial. Any interval where the angle between $B_{\rm r} \mathbf{\hat{r}}$ and
+                $\mathbf{B}$ was more than 30\,degrees was not considered. This ensured that the
+                temperature measured by SPC was indeed the parallel temperature. We compute
+                temperature anisotropy at a much lower cadence than the temperature measurement
+                ($\sim$\,0.1\,Sa/S) using the methodology described in \citet{Huang2020}. Once we
+                have the anisotropy data along with proton density and magnetic field strength we
+                compute the $\beta_{\parallel \rm p}$ according to \Cref{eq:beta}. We then calculate
+                $\gamma$ and $\omega_{\rm {nl}}$ using the same methodology as mentioned in
+                \Cref{sec:wndds}. 
+
+    \section{Simulation datasets}\label{sec:intr42}
+
+        Though spacecraft provide plenty of in-situ data, because of several restrictions (e.g.,
+        cost, planning, resolution, and cadence) not every phenomena of plasma can be studied using
+        spacecraft data. Thus physicists often use simulations to study different systems or verify
+        predictions made by theories under certain conditions. For space plasmas there are 3 types
+        of simulations that are usually carried out.
+
+        \subsection{MHD Simulations}\label{sec:mhd}
+
+            MHD simulation\index{simulation!MHD} treats the plasma as an electromagnetic, conducting fluid having one
+            characteristic velocity and temperature and studies its dynamics by numerically solving
+            the required MHD equations. For more details about the underlying physics and some of
+            the relevant equations see \citep{Hossain1995}.
+
+        \subsection{Hybrid Simulations}\label{sec:hybd}
+
+            In hybrid simulations\index{simulation!hybrid}, instead of treating the whole system as a fluid, electrons are
+            treated as massless fluid and protons are treated as massive particles. For the details
+            of such simulations and equations used for it refer to \citep{Terasawa1986, Vasquez1995,
+            Parashar2009}.
+
+        \subsection{Kinetic Simulations}\label{sec:kntc}
+
+            In kinetic simulations\index{simulation!kinetic} with particle in cell (PIC) we solve Vlasov\index{Vlasov} equation (see
+            \Cref{eq:vlas}) along with Maxwell's equation (see \Crefrange{eq:maxwell1}{eq:maxwell4})
+            by treating plasma as a collection of individual particles. PIC simulations are often
+            performed on either a 2.5D system or a full 3-D system.
+
+        \paragraph*{3-D PIC Simulations}\label{sec:3pic}
+
+            In full 3-D system\index{simulation!3-D PIC} the parameters are setup such that the vectors can fluctuate in all
+            three directions. For this thesis, we used the output of a fully kinetic 3-D simulation
+            performed by \citep{Roytershteyn2015}. In the simulation the system was initially
+            perturbed ($|\delta\mathbf{B}^2| = \mathbf{B}_{\rm 0}^2$) and was then left to evolve
+            under its own forcing. The undisturbed state of particle distribution was Maxwellian
+            (for both proton and electron) at equal temperature ($T_{\rm p} = T_{\rm e}$). Some
+            other parameters were $\beta_{\rm p}=\beta_{\rm e}=\, 0.5, R_{\rm p}=1, \omega_{\rm
+            pe}/\Omega_{\rm ce} = 2$, $m_{\rm p}/m_{\rm e} = 50$ and the background magnetic field
+            was in $z$-direction. Size of the box was $l \approx 42\,d_{\rm p}$, with a resolution
+            of $2048^3$ cells. Average number of particles in each cell was 150 making a total of
+            $\sim\,2.6 \times 10^{12}$. We refer to this dataset as \texttt{ros}.
+
+        \paragraph*{2.5-D Simulations}\label{sec:2pic}
+
+            In case of a 2.5D simulation\index{simulation!2.5-D} the plasma parameters are allowed to vary only in 2
+            dimensions, though they have all 3 components. Depending on the direction of background
+            magnetic field one can further classify 2.5-D simulation in following classes:
+
+            (a) \textbf{2.5D perpendicular PIC simulation}: The parameters are allowed to vary only
+            in 2 spatial dimensions with background magnetic field perpendicular to the simulation
+            plane.
+
+            (b) \textbf{2.5D oblique PIC simulation}: The parameters are allowed to vary only in 2
+            spatial dimensions with background magnetic field neither parallel nor perpendicular to
+            the simulation plane.
+
+            (c) \textbf{2.5D parallel PIC simulation}: The parameters are allowed to vary only in 2
+            spatial dimensions with background magnetic field parallel to the simulation plane.\\
+
+        In this thesis we used both perpendicular and parallel simulations. For the 2.5-D
+        perpendicular simulation we used the output from a P3D code \citep{Zeiler2002}. The initial
+        conditions were such that we have $m_{\rm p}/m_{\rm e} = 25, T_{\rm p} = T_{\rm e},
+        \beta_{\rm p} = \beta_{\rm e} = 0.6, \delta B = 0.5\,B_{\rm 0}$ and the length of the box
+        was $l = 149.6\,d_{\rm p}$ at a resolution $4096^2$ of with each cell having an average of
+        3200 particles with each species resulting in a total of $1.07 \times 10^{11}$ particles.
+        For more details on the simulation refer to \citep{Parashar2018}. We refer to this dataset
+        as \texttt{149p6}.
+
+        We also used a 2.5-D parallel simulation where the background magnetic field was in the
+        plane with $\mathbf{B}_{\rm 0} = B_{\rm 0} \hat{x}, m_{\rm p}/m_{\rm e} = 25, \omega_{\rm
+        pe}/\Omega_{\rm ce} = 8, \beta_{\rm p}= \beta_{\rm e} = 0.6$. The size of the box was
+        $l_\parallel = 149.6\,d_{\rm p}$ (in parallel direction) and $l_\perp = 37.4\,d_{\rm p}$ (in
+        perpendicular direction) at a resolution of $4043 \times 1000$ with an average of 800
+        particles/cell resulting in a total of $6.5 \times 10^{9}$ particles.  More information
+        about this simulation can be found in \citep{Parashar2019, Gary2020}. We refer to this
+        dataset as \texttt{kaw}.
+
+        For 2 datasets of simulations (\texttt{kaw} and \texttt{149p6}), once we have the value of
+        $R_{\rm p}$ and $\beta_{\parallel \rm p}$ we compute $\gamma$ and $\omega_{\rm nl}$ in the
+        same way as mentioned in \Cref{sec:wndds}. For the case \texttt{ros}, for computation of
+        $\omega_{\rm nl}$, because of some computational limitations, the value of lag was kept
+        fixed at $1\,d_{\rm p}$.
+
+        \begin{table}[ht]
+            \centering
+            \caption{Datasets used in this study}
+            \begin{tabular}{ m{0.1\linewidth}  m{0.3\linewidth}  m{0.20\linewidth} m{0.3\linewidth}}
+            \\
+                \hline
+                \\
+                Dataset & Type of data & median values & List of chapters\\
+                \\
+                \hline
+                \\
+                \texttt{149p6} & PIC Simulation (2.5-D) & $R_{\rm p} = 0.89$, \newline
+                $\beta_{\rm \parallel p} = 0.67$ & \Cref{chap:chap5,chap:chap7}\\ \\
+                %\hline
+                \\
+                \texttt{kaw} & PIC Simulation (2.5-D) & $R_{\rm p} = 0.83$, \newline
+                $\beta_{\parallel \rm p} = 0.64$ & \Cref{chap:chap5,chap:chap7} \\ \\
+                %\hline
+                \\
+                \texttt{ros} & PIC Simulation (3-D) & $R_{\rm p} = 1.04 $, \newline
+                $\beta_{\parallel \rm p} = 0.84$ & \Cref{chap:chap5,chap:chap7,chap:chap8} \\ \\
+                %\hline
+                \\
+                \texttt{mms} &Spacecraft Observation (Magnetosheath) & see \Cref{tab:mmsdata} &
+                \Cref{chap:chap5,chap:chap7} \\ \\
+                %\hline
+                \\
+                \texttt{wnd} & Spacecraft Observation (Solar Wind at 1\,au) & $R_{\rm p} = 0.50$,
+                \newline
+                $\beta_{\parallel \rm p} = 0.69$ & \Cref{chap:chap5,chap:chap7} \\ \\
+                %\hline
+                \\
+                \texttt{psp} & Spacecraft Observation (Solar Wind at 0.2\,au) & $R_{\rm p} = 1.44 $,
+                \newline $\beta_{\parallel \rm p} = 0.50$ & \Cref{chap:chap6,chap:chap7} \\ \\
+                \hline
+            \end{tabular}
+            \label{tab:datachap}
+        \end{table}
